@@ -1,0 +1,28 @@
+//* ==================== + ==================== + ====================
+//* 
+//* 						The site was made by Miron Khoruzhenko
+//* 
+//*    Email:	mironkhoruzhenko@gmail.com
+//*  Website:	www.orinium.com
+//* LinkedIn:	https://www.linkedin.com/in/miron-khoruzhenko-164085202/
+//*   Github:	https://github.com/miron-khoruzhenko/
+//* 
+//* ==================== + ==================== + ====================
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body, div, nav{
+	overflow-x: hidden;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}

@@ -22,7 +22,7 @@ const navbar_links = [
 		index: index++,
 	},
 	{
-		title: 'Contact',
+		title: 'Contacts',
 		link: '/contact',
 		index: index++,
 	},

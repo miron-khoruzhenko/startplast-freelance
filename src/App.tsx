@@ -18,6 +18,7 @@ function App() {
   <>
     <BrowserRouter basename="/miron.github.io">
       <Navbar/>
+      <div className="pt-[75px]"/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />

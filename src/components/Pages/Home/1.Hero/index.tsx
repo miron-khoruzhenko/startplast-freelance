@@ -3,7 +3,7 @@ import hero_img from "/src/assets/home/hero-img.png"
 
 const Hero = () => {
 	const styles = {
-		hero : "w-screen min-h-screen pt-[75px] ",
+		hero : "w-screen min-h-screen ",
 		imgContainer : "h-3/5 bg-main-gray ",
 		image : "max-h-full h-full mx-auto object-cover ",
 

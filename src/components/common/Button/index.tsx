@@ -2,13 +2,13 @@ import { Link } from "react-router-dom"
 import ButtonProps from "../../../types/Button"
 
 const styles = {
-	button : "rounded px-6 py-3 block border text-base ",
+	button : "rounded px-6 py-3 block border text-sm sm:text-base whitespace-nowrap ",
 	primaryButton : "bg-main-indigo border-main-indigo text-white ",
 	secondaryButton : "border-main-indigo text-main-indigo ",
 }
 
 const Button = (props : ButtonProps) => {
-	const styleClasses = styles.button + (props.isSecondary ? styles.secondaryButton : styles.primaryButton)
+	const styleClasses = styles.button + (props.className ? props.className + " " : '') + (props.isSecondary ? styles.secondaryButton : styles.primaryButton)
 	const href = props.href ? props.href : ""
 	return (
 		props.isLink ? 

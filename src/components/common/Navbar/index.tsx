@@ -11,8 +11,8 @@ import SidebarScreen from './SidebarScreen'
 import links from './navbar_links'
 
 const styles = {
-	navbar: "border-b block fixed top-0 left-0 bg-white border-black/20 w-full max-w-screen py-3 px-5 sm:px-0 ",
-	container: "container mx-auto flex justify-between items-center  ",
+	navbar: "border-b block fixed top-0 left-0 bg-white border-black/20 w-full max-w-screen py-3 px-5 sm:px-0 z-50 overflow-visible ",
+	container: "container mx-auto flex justify-between items-center ",
 	logo : "h-[50px] ",
 	navItems: "gap-8 hidden sm:flex ",
 	navItem: "",
@@ -29,7 +29,9 @@ const Navbar = () => {
 	return (
 		<nav className={styles.navbar}>
 			<div className={styles.container}>
-				<img src={logo} alt="" className={styles.logo}/>
+				<Link to="/">
+					<img src={logo} alt="" className={styles.logo}/>
+				</Link>
 				<ul className={styles.navItems}>
 					{links.map((link) => (
 							<li key={link.index} className={styles.navItem + (location.pathname === link.link ? "font-bold " : "")}>

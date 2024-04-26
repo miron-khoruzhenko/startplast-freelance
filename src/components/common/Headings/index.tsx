@@ -1,5 +1,5 @@
 const styles = {
-	heading : "mb-6 text-main-indigo font-bold text-3xl sm:text-5xl ",
+	heading : "mb-6 text-main-indigo font-bold text-4xl sm:text-5xl ",
 	subheading : "mb-4 text-main-pink font-bold text-base uppercase ",
 }
 

@@ -1,9 +1,10 @@
-import React from 'react'
+import Container from "../../../common/Container"
 
 const CustomSection = () => {
 	const styles = {
 		custom: "bg-custom-bg bg-center bg-no-repeat bg-cover w-screen ",
-		container : "container mx-auto py-16 sm:py-28 px-3 grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-20 ",
+
+		container : "grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-20 ",
 		subheading: "text-white font-bold text-base uppercase mb-3 sm:mb-4 ",
 		heading: "text-white font-bold text-4xl sm:text-5xl ",
 
@@ -22,7 +23,7 @@ const CustomSection = () => {
 	}
 	return (
 		<section className={styles.custom}>
-			<div className={styles.container}>
+			<Container className={styles.container}>
 				
 				<div className="">
 					<h3 className={styles.subheading}>Make your own</h3>
@@ -47,7 +48,7 @@ const CustomSection = () => {
 					</div>
 
 				</div>
-			</div>
+			</Container>
 		</section>
 	)
 }

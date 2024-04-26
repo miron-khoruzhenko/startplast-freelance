@@ -28,8 +28,9 @@ function App() {
         <Route path="/contacts" element={<Contacts />} />
         <Route path="/about" element={<About />} />
         <Route path="/certificates" element={<Certificates />} />
-        <Route path="/not-found" element={<NotFound />} />
         <Route path="/login" element={<Login />} />
+        <Route path="*" element={<NotFound />} />
+
       </Routes>
       <Footer/>
 

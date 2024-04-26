@@ -4,6 +4,7 @@ interface ButtonProps {
 	href?: string,
 	isLink?: boolean,
 	isSecondary?: boolean,
+	onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 export default ButtonProps

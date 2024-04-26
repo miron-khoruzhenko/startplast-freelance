@@ -16,7 +16,7 @@ const styles = {
 	logo : "h-[50px] ",
 	navItems: "gap-8 hidden sm:flex ",
 	navItem: "",
-	navIcons: "flex gap-5 ",
+	navIcons: "flex gap-5 cursor-pointer ",
 	navIcon: "h-6 ",
 	navIconImg: "",
 }

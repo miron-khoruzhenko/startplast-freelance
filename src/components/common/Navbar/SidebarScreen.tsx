@@ -2,13 +2,24 @@ import { useEffect, useState } from "react"
 
 import icon1 from '/src/assets/common/navbar-icons/search.svg'
 import icon2 from '/src/assets/common/navbar-icons/lang.svg'
+import russian_icon from '/src/assets/common/navbar-icons/russian_flag.png'
+
 import navbar_links from "./navbar_links";
 
 import Hamburger from "./Hamburger";
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const SidebarScreen = () => {
+
+	const [modeStyles, setModeStyles] = useState('')
+	const [isBurgerPressed, setIsBurgerPressed] = useState(false)
+	const [isOpen, setIsOpen] = useState(false) 
+
+	const [currentLang, setCurrentLang] = useState({
+		name: 'English',
+		icon: icon2,
+	})
 
 	const closeMode = "opacity-0 translate-x-full",
 				openMode = "opacity-100 translate-x-0 ";
@@ -24,16 +35,25 @@ const SidebarScreen = () => {
 		navListItem: "list-none text-lg ",
 
 		arrow: "inline-block border-r-2 border-b-2 border-black w-2 h-2 rotate-45 mb-[2px] mx-2",
+
+		dropdown: `absolute right-0 top-full bg-white shadow-lg min-w-[200px]  py-6 border ${isOpen ? 'block' : 'hidden'} `,
+		dropdownItem: 'cursor-pointer hover:bg-main-gray py-2 px-4',
 	}
 
-	// const linkStyles = {
-	// 	links : "relative transition-colors dark:text-zinc-200 hover:text-zinc-700 dark:hover:text-zinc-50   ",
-	// 	linksAfter : `after:block after:h-[2px] after:w-full after:my-1 after:transition-opacity after:absolute after:opacity-0 after:bg-zinc-500 dark:after:bg-zinc-200 hover:after:opacity-100 `,
-	// 	activeLink : 'dark:text-zinc-50 '
-	// }
+	const langList = [
+		{
+			name: 'English',
+			icon: icon2
+		},
+		{
+			name: 'Russian',
+			icon: russian_icon
+		}
+	]
 
-	const [modeStyles, setModeStyles] = useState('')
-	const [isBurgerPressed, setIsBurgerPressed] = useState(false)
+
+
+	const location = useLocation()
 
 
 	const handleClick : React.MouseEventHandler<HTMLDivElement> = e => {
@@ -49,6 +69,11 @@ const SidebarScreen = () => {
 		e.preventDefault()
 
 		setIsBurgerPressed(!isBurgerPressed)
+	}
+
+	const handleLangClick  = (lang : {name: string,icon: string}) => {		
+		setCurrentLang(lang)
+		setIsOpen(false)
 	}
 
 
@@ -78,19 +103,35 @@ const SidebarScreen = () => {
 			>
 
 			<ul className={styles.navList}>
-			{navbar_links.map((link, index) => (
+			{navbar_links.map((link) => (
 				<li key={link.index} 
-					className={styles.navListItem + (index === 0 ? " font-bold " : '') + (location.pathname === link.link ? " font-bold " : "")}>
+					className={styles.navListItem  + (location.pathname === link.link ? " font-bold " : "")}>
 					<Link to={link.link}>{link.title}</Link>
 				</li>
 			))}
 			
-			<li className={styles.navListItem + 'flex justify-between cursor-pointer'}>English 
-				<div className="">
-					<img src={icon2} alt="" className={'h-6 w-6 rounded-full inline-block'} />
+			<li className={styles.navListItem + 'flex justify-between cursor-pointer relative'}>{currentLang.name} 
+				<div className="" onClick={()=>setIsOpen(!isOpen)}>
+					<img src={currentLang.icon} alt="" className={'h-6 w-6 rounded-full inline-block'} />
 					<div className={styles.arrow}></div>
 				</div>
+
+				<ul className={styles.dropdown}>
+					{
+						langList.map((lang, index) => {
+							if (lang.name === currentLang.name)
+								return null
+							return (
+							<li key={index} className={styles.dropdownItem} onClick={()=>handleLangClick(lang)}> 
+								<img src={lang.icon} alt="" className={'h-6 w-6 mr-2 rounded-full inline-block'} />
+								{lang.name}	
+							</li>
+						)})
+					}
+
+				</ul>
 			</li>
+
 			<li className={styles.navListItem}>
 				<label className="border border-black rounded flex p-3">
 					<input type="text" className="w-full outline-none" placeholder="Search" />

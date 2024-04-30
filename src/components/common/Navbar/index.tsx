@@ -12,6 +12,7 @@ import SidebarScreen from './SidebarScreen'
 
 import links from './navbar_links'
 import { useState } from 'react'
+import RegistrationPopup, { LoginPopup } from '../popups/Popups'
 
 const styles = {
 	navbar: "border-b block fixed top-0 left-0 bg-white border-black/20 w-full max-w-screen py-3 px-5 sm:px-0 z-50 overflow-visible ",
@@ -46,6 +47,8 @@ const Navbar = () => {
 		name: 'English',
 		icon: icon4,
 	})
+	const [isModalOpen, setIsModalOpen] = useState(false)
+	
 	const handleLangClick  = (lang : {name: string,icon: string}) => {		
 		setCurrentLang(lang)
 		setIsOpen(false)
@@ -53,14 +56,17 @@ const Navbar = () => {
 
 
 	const dropdownStyles={
-		dropdown: `absolute right-0 top-full bg-white shadow-lg min-w-[200px]  py-6 border ${isOpen ? 'block' : 'hidden'} `,
+		dropdown: `absolute right-0 top-full  bg-white shadow-lg min-w-[200px]  py-6 border ${isOpen ? 'block' : 'hidden'} `,
 		dropdownItem: 'cursor-pointer hover:bg-main-gray py-2 px-4',
 	}
 	const location = useLocation()
 
 	return (
 		<nav className={styles.navbar}>
+				{/* <RegistrationPopup isOpen={isModalOpen} setIsOpen={setIsModalOpen} /> */}
+				<LoginPopup isOpen={isModalOpen} setIsOpen={setIsModalOpen} />
 			<div className={styles.container}>
+
 				<Link to="/">
 					<img src={logo} alt="" className={styles.logo}/>
 				</Link>
@@ -75,8 +81,9 @@ const Navbar = () => {
 						<ul className={styles.navIcons}>
 							<li className={styles.navIcon}>
 								<img src={icon1} alt="" className={styles.navIconImg} /></li>
-							<li className={styles.navIcon}>
-								<img src={icon2} alt="" className={styles.navIconImg} /></li>
+							<li className={styles.navIcon} onClick={()=>setIsModalOpen(true)}>
+								<img src={icon2} alt="" className={styles.navIconImg} />
+								</li>
 							<li className={styles.navIcon}>
 								<img src={icon3} alt="" className={styles.navIconImg} /></li>
 							<li className={styles.navIcon} onClick={()=>setIsOpen(!isOpen)}>

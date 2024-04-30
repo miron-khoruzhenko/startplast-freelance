@@ -47,3 +47,7 @@ body::-webkit-scrollbar {
       -moz-appearance: textfield;
   }
 }
+
+html{
+  scroll-behavior: smooth;
+}

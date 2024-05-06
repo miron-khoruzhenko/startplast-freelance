@@ -1,3 +1,4 @@
+import { useState } from "react"
 import Button, { EmptyButton } from "../../../common/Button"
 import InputBlock from "../../../common/InputBlock"
 
@@ -68,21 +69,62 @@ export const UserTable = () => {
 }
 
 export const RightPanel = ({isEditPanel} : {isEditPanel:boolean}) => {
+	const [productData, setProductData] = useState({
+		full_name: '',
+		company_name: '',
+		email: '',
+		discount: '',
+		password: '',
+	}) 
+
+	const [response, setResponse] = useState()
+	const [isLoading, setIsLoading] = useState(false)
+
+	/**
+	 * Handles the form submission when creating a new user.
+	 * 
+	 * @param e - The event object for the button click.
+	 */
+	const handleFormSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+		e.preventDefault();
+		setIsLoading(true);
+
+		fetch('http://localhost:5000/api/item/', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(productData)
+		})
+			.then(data => {
+				if (data.status === 200) {
+					return data.json();
+				} else {
+					throw new Error('Error ' + data.statusText);
+				}
+			})
+			.then(data => {
+				setResponse(data);
+			})
+			.finally(() => {
+				setIsLoading(false);
+			});
+	}
 	return (
 		<div className="bg-neutral-300  py-24  w-[300px] min-h-screen text-white px-7 absolute right-0 top-0 max-h-full overflow-y-scroll ">
 			<h2 className={styles.title + 'text-black '}>Selected user:</h2>
-			<InputBlock className="placeholder:text-black" zeroMargin={true} placeholder="Full Name" />
-			<InputBlock className="placeholder:text-black" zeroMargin={true} placeholder="Company Name" />
-			<InputBlock className="placeholder:text-black" zeroMargin={true} placeholder="Email Name" />
-			<InputBlock zeroMargin={true} placeholder="Discount" />
-			<InputBlock zeroMargin={true} placeholder="Password" />
+			<InputBlock onInputChange={(e)=>setProductData({...productData, full_name:e.target.value})} className="placeholder:text-black" zeroMargin={true} placeholder="Full Name" />
+			<InputBlock onInputChange={(e)=>setProductData({...productData, company_name:e.target.value})} className="placeholder:text-black" zeroMargin={true} placeholder="Company Name" />
+			<InputBlock onInputChange={(e)=>setProductData({...productData, email:e.target.value})} className="placeholder:text-black" zeroMargin={true} placeholder="Email Name" />
+			<InputBlock onInputChange={(e)=>setProductData({...productData, discount:e.target.value})} zeroMargin={true} placeholder="Discount" />
+			<InputBlock onInputChange={(e)=>setProductData({...productData, password:e.target.value})} zeroMargin={true} placeholder="Password" />
 			<Button className="mt-2 w-full">Generate Password</Button>
 			<Button className="mt-2 w-full">Generate Password</Button>
 
 			{
 			isEditPanel ? 
 			<>
-				<EmptyButton className="bg-green-800 min-h-full mt-10 w-full" >
+				<EmptyButton className="bg-green-800 min-h-full mt-10 w-full" onClick={handleFormSubmit} >
 					Create User 
 				</ EmptyButton>
 				<p className="text-green-800 mt-2 text-sm text-center ">And send his account details via email</p>	

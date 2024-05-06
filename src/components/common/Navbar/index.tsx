@@ -12,7 +12,8 @@ import SidebarScreen from './SidebarScreen'
 
 import links from './navbar_links'
 import { useState } from 'react'
-import RegistrationPopup, { LoginPopup } from '../popups/Popups'
+import  { LoginPopup } from '../popups/Popups'
+import RegistrationPopup from '../popups/Popups'
 
 const styles = {
 	navbar: "border-b block fixed top-0 left-0 bg-white border-black/20 w-full max-w-screen py-3 px-5 sm:px-0 z-50 overflow-visible ",
@@ -61,10 +62,14 @@ const Navbar = () => {
 	}
 	const location = useLocation()
 
+	const show_login = true
+
 	return (
 		<nav className={styles.navbar}>
-				{/* <RegistrationPopup isOpen={isModalOpen} setIsOpen={setIsModalOpen} /> */}
-				<LoginPopup isOpen={isModalOpen} setIsOpen={setIsModalOpen} />
+			{ show_login ? 
+				<LoginPopup isOpen={isModalOpen} setIsOpen={setIsModalOpen} /> :
+				<RegistrationPopup isOpen={isModalOpen} setIsOpen={setIsModalOpen} /> 
+			}
 			<div className={styles.container}>
 
 				<Link to="/">

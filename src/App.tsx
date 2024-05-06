@@ -41,6 +41,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/certificates" element={<Certificates />} />
           <Route path="/login" element={<Login />} />
+
           <Route path="*" element={<NotFound />} />
         </Route>
 

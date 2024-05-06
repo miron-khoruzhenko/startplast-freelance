@@ -4,12 +4,13 @@ import Heading from "../../common/Headings"
 
 import img from '/src/assets/login/smart_id_logo.png'
 import InputBlock from "../../common/InputBlock"
-
+import RegistrationPopup from "../../common/popups/Popups"
 
 const Login = () => {
 	const btnLabels = ['Smart-ID', 'ID-kaart', 'Mobil-ID', 'E-mail login']
 
 	const [pressedBtnStr, setPressedBtnStr] = useState('Smart-ID')
+	const [isRegistrationOpen, setIsRegistrationOpen] = useState(false)
 
 	const styles = {
 		container: 'py-6 sm:py-20 container mx-auto grid grid-cols-1 sm:grid-cols-2 gap-x-56 gap-y-14 p-3 ',
@@ -39,6 +40,7 @@ const Login = () => {
 
 	return (
 		<section className={styles.container}>
+			<RegistrationPopup isOpen={isRegistrationOpen} setIsOpen={setIsRegistrationOpen} />
 			<div className="">
 				<Heading>Log in</Heading>
 				
@@ -52,7 +54,7 @@ const Login = () => {
 			</div>
 			<div className="">
 				<Heading>Registration</Heading>
-				<EmptyButton className={styles.btn}>Create account</EmptyButton>
+				<EmptyButton className={styles.btn} onClick={()=>setIsRegistrationOpen(true)}>Create account</EmptyButton>
 			</div>
 		</section>
 	)
@@ -60,11 +62,56 @@ const Login = () => {
 
 
 const SmartIDLogin = () => {
+	const styles = {
+		btnLoading : "rounded-full border border-b-0 animate-spin w-6 h-6 inline-block ",
+	}
+
+	const [fetchData, setFetchData] = useState()
+	const [isLoading, setIsLoading] = useState(false)
+
+	/**
+	 * Handles the form submission when creating a new user.
+	 * 
+	 * @param e - The event object for the button click.
+	 */
+	const handleLoginSubmit = () => {
+		setIsLoading(true)
+		fetch('http://localhost:5000/api/user/login', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(loginData)
+		})
+		.then(data => {
+			if (data.status === 200)
+				return data.json()
+			else
+				throw new Error('Error ' + data.statusText)
+		})
+		.then(data => {
+			setFetchData(data)
+		})
+		.finally(()=>{
+			// setIsLoading(false)
+		})
+	}
+
+	const [loginData, setLoginData] = useState({
+		isikukood: '',
+	})
+
 	return (
 		<div className="">
 			<img src={img} alt="" className={'mb-6'} />
 			<InputBlock label="Isikukood*" type="text" placeholder="" />
-			<Button className="w-full">Log in</Button>
+			{isLoading ? 
+				<Button className="flex justify-center items-center  gap-4 w-full text-center">
+					<div className={styles.btnLoading + (isLoading ? '' : 'hidden')}></div> <div>Loading...</div>
+				</Button>
+				:
+			<Button className="w-full" onClick={handleLoginSubmit}>Log in</Button>}
+
 		</div>
 	)
 }

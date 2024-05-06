@@ -1,7 +1,7 @@
 import { InputBlockProps } from "../../../types/InputBlockProps"
 
 const InputBlock = (
-	{label, type, placeholder, textarea, checkBoxColor, zeroMargin, className, onClick} : InputBlockProps) => {
+	{label, type, placeholder, textarea, checkBoxColor, zeroMargin, className, onClick, onInputChange} : InputBlockProps) => {
 	const styles = {
 		container: `${zeroMargin ? ' ' : 'mb-6 '} `,
 		label: 'block mb-2',
@@ -18,6 +18,7 @@ const InputBlock = (
 					id={label} 
 					className={styles.checkbox} 
 					style={{backgroundColor: checkBoxColor || 'white'}}
+					onChange={onInputChange}
 				/>
 				<label 
 					htmlFor={label} 
@@ -35,7 +36,12 @@ const InputBlock = (
 				textarea ? 
 				<textarea onClick={onClick} placeholder={placeholder} className={styles.input + styles.textarea}></textarea>
 				:
-				<input type={type || 'text'} placeholder={placeholder} className={styles.input} />
+				<input 
+					type={type || 'text'} 
+					placeholder={placeholder} 
+					className={styles.input} 
+					onChange={onInputChange}
+				/>
 			}
 		</div>
 	)

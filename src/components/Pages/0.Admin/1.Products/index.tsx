@@ -1,3 +1,4 @@
+import { useState } from "react"
 import Button, { EmptyButton } from "../../../common/Button"
 import InputBlock from "../../../common/InputBlock"
 
@@ -27,12 +28,53 @@ const ProductCol = (
 	{heading, btnText, btnColor}:
 	{heading:string, btnText:string, btnColor:string}
 ) => {
+	const [productData, setProductData] = useState({
+		name: '',
+		code: '',
+		quantityPerPackage: '',
+		quantityPerPallet: '',
+	}) 
+
+	const [response, setResponse] = useState()
+	const [isLoading, setIsLoading] = useState(false)
+
+	/**
+	 * Handles the form submission when creating a new user.
+	 * 
+	 * @param e - The event object for the button click.
+	 */
+	const handleFormSubmit = (e:React.MouseEvent<HTMLButtonElement>) => {
+		e.preventDefault()
+		setIsLoading(true)
+
+
+		fetch('http://localhost:5000/api/item/', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(productData)
+		})
+		.then(data => {
+			if (data.status === 200)
+				return data.json()
+			else
+				throw new Error('Error ' + data.statusText)
+		})
+		.then(data => {
+			setResponse(data)
+		}).finally(()=>{
+			setIsLoading(false)
+		})
+	}
 	const styles = {
 		container: 'bg-white p-5 rounded-md ',
 		title: "font-bold text-2xl mb-3 ",
 		select: "bg-main-indigo text-white py-3 px-6 rounded appearance-none ",
 		input: "",
 		flexContainer: 'flex flex-col ', 
+		btnLoading : "rounded-full border border-b-0 animate-spin w-6 h-6 inline-block ",
+
 	}
 
 	switch (btnColor) {
@@ -57,10 +99,10 @@ const ProductCol = (
 			</select>
 
 			<div className={styles.flexContainer}>
-				<InputBlock zeroMargin={true} placeholder="Name" />
-				<InputBlock zeroMargin={true} placeholder="Code" />
-				<InputBlock zeroMargin={true} placeholder="Quantity per package" />
-				<InputBlock zeroMargin={true} placeholder="Quantity per pallet" />
+				<InputBlock onInputChange={(e)=>setProductData({...productData, name:e.target.value})} zeroMargin={true} placeholder="Name" />
+				<InputBlock onInputChange={(e)=>setProductData({...productData, code:e.target.value})} zeroMargin={true} placeholder="Code" />
+				<InputBlock onInputChange={(e)=>setProductData({...productData, quantityPerPackage:e.target.value})} zeroMargin={true} placeholder="Quantity per package" />
+				<InputBlock onInputChange={(e)=>setProductData({...productData, quantityPerPallet:e.target.value})} zeroMargin={true} placeholder="Quantity per pallet" />
 			</div>
 
 			<div className="flex gap-2 my-2">
@@ -75,7 +117,9 @@ const ProductCol = (
 				<InputWithIcon isDeleteBtn={false} />
 			</div>
 
-			<EmptyButton className={'w-full ' + btnColor}  >{btnText}</EmptyButton>
+			<EmptyButton onClick={handleFormSubmit} className={'w-full flex justify-center gap-4 ' + btnColor}  >
+			{isLoading ? <><div className={styles.btnLoading + (isLoading ? '' : 'hidden')}></div> <div>Loading...</div></> : btnText}
+			</EmptyButton>
 		</div>
 
 	)

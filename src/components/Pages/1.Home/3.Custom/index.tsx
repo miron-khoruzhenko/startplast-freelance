@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import Container from "../../../common/Container"
 
 const CustomSection = () => {
@@ -43,8 +44,8 @@ const CustomSection = () => {
 					</ul>
 
 					<div className={styles.buttonContainer}>
-						<a href="" className={styles.button + styles.primaryButton}>Start project</a>
-						<a href="" className={styles.button + styles.secondaryButton}>Contact us <div className={styles.arrow}></div></a>
+						<Link to='/certificates' className={styles.button + styles.primaryButton}>Start project</Link>
+						<Link to='/contacts' className={styles.button + styles.secondaryButton}>Contact us <div className={styles.arrow}></div></Link>
 					</div>
 
 				</div>

@@ -31,8 +31,8 @@ const Hero = () => {
 					</p>
 
 					<div className={styles.buttons}>
-						<Button isLink={true} href="#">Go to Products</Button>
-						<Button isLink={true} href="#" isSecondary={true} >For companies</Button>
+						<Button isLink={true} href="/products">Go to Products</Button>
+						<Button isLink={true} href="/certificates" isSecondary={true} >For companies</Button>
 					</div>
 				</div>
 			</div>

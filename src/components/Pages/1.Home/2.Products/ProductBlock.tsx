@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import ProductBlockProps from "../../../../types/ProductBlock"
 
 const ProductBlock = (props : ProductBlockProps) => {
@@ -12,13 +13,14 @@ const ProductBlock = (props : ProductBlockProps) => {
 		arrow: "inline-block border-r-2 border-t-2 border-main-indigo w-2 h-2 rotate-45 mb-[2px]",
 		productImg: "object-cover min-w-full border border-black/20 h-48 sm:h-[275px] sm:border-none"
 	}
+	
 
 	return (
 		<div className={styles.card}>
 			<div className={styles.productTextContainer}>
 				<h4 className={styles.productTitle}>{title}</h4>
 				<p className={styles.productDescr}>{descr}</p>
-				<a href={href} className={styles.showMore}>Shop all <div className={styles.arrow} /></a>
+				<Link to={href} className={styles.showMore}>Shop all <div className={styles.arrow} /></Link>
 			</div>
 			<img src={img} alt="" className={styles.productImg} />
 		</div>

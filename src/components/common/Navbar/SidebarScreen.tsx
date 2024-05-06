@@ -25,7 +25,7 @@ const SidebarScreen = () => {
 				openMode = "opacity-100 translate-x-0 ";
 
 	const styles = {
-		container : ` flex sm:hidden w-screen h-[calc(100svh-100%)] absolute top-full left-0 transition-[opacity,transform] duration-700 z-10 py-7 px-5`,
+		container : ` flex sm:hidden w-screen h-[calc(100svh-100%)] absolute top-full -left-5 transition-[opacity,transform] duration-700 z-10 py-7 px-5`,
 		containerBg : ' bg-white ',
 		// div : "absolute bottom-5 right-5 scale-125",
 		hamburger : "block sm:hidden z-20 -mb-2 relative select-none  ",

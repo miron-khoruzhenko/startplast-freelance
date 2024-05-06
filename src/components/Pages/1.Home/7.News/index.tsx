@@ -30,7 +30,7 @@ const News = (
 						<NewsBlock key={news.index} title={news.title} text={news.text} img={news.img} />))}
 				</div>
 
-				<Link className={styles.btn} to="/links">View all</Link>
+				<Link className={styles.btn} to="/news">View all</Link>
 
 				
 			</Container>
@@ -69,7 +69,7 @@ const NewsBlock = ({title, text, img} : {title:string, text:string, img:string})
 				<h3 className={styles.title}>{title}</h3>
 				<p className={styles.text}>{text}</p>
 
-				<a href="" className="">Read More <div className={styles.arrow}></div></a>
+				<Link to="/news/news-page" className="">Read More <div className={styles.arrow}></div></Link>
 			</div>
 		</div>
 	)

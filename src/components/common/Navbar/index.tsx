@@ -14,6 +14,7 @@ import links from './navbar_links'
 import { useState } from 'react'
 import  { LoginPopup } from '../popups/Popups'
 import RegistrationPopup from '../popups/Popups'
+import SearchModal from './SearchModal'
 
 const styles = {
 	navbar: "border-b block fixed top-0 left-0 bg-white border-black/20 w-full max-w-screen py-3 px-5 sm:px-0 z-50 overflow-visible ",
@@ -44,6 +45,7 @@ const langList = [
 
 const Navbar = () => {
 	const [isOpen, setIsOpen] = useState(false) 
+	const [isSearchModalOpen, setIsSearchModalOpen] = useState(false) 
 	const [currentLang, setCurrentLang] = useState({
 		name: 'English',
 		icon: icon4,
@@ -66,10 +68,12 @@ const Navbar = () => {
 
 	return (
 		<nav className={styles.navbar}>
-			{ show_login ? 
+			{/* { show_login ? 
 				<LoginPopup isOpen={isModalOpen} setIsOpen={setIsModalOpen} /> :
 				<RegistrationPopup isOpen={isModalOpen} setIsOpen={setIsModalOpen} /> 
 			}
+			<SearchModal isOpen={isSearchModalOpen} setIsOpen={setIsSearchModalOpen} /> */}
+
 			<div className={styles.container}>
 
 				<Link to="/">
@@ -84,7 +88,7 @@ const Navbar = () => {
 
 					<li className={styles.navItem}>
 						<ul className={styles.navIcons}>
-							<li className={styles.navIcon}>
+							<li className={styles.navIcon} onClick={()=>setIsSearchModalOpen(true)}>
 								<img src={icon1} alt="" className={styles.navIconImg} /></li>
 							<li className={styles.navIcon} onClick={()=>setIsModalOpen(true)}>
 								<img src={icon2} alt="" className={styles.navIconImg} />

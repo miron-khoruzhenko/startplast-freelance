@@ -228,9 +228,9 @@ const Footer = (
 	)
 }
 
-const Modal = (
-	{children, isOpen, setIsOpen, className}
-	: {children: React.ReactNode, isOpen: boolean, setIsOpen: React.Dispatch<React.SetStateAction<boolean>> , className?: string}
+export const Modal = (
+	{children, isOpen, setIsOpen, className, modalClassName}
+	: {children: React.ReactNode, isOpen: boolean, setIsOpen: React.Dispatch<React.SetStateAction<boolean>> , className?: string, modalClassName?: string}
 ) => {
 	const handleClick = (e: React.MouseEvent) => {
 		if(e.target === e.currentTarget){
@@ -241,12 +241,12 @@ const Modal = (
 
 	const styles = {
 		container: `${isOpen? '' : 'hidden'} w-screen h-screen bg-main-gray/80 flex flex-col justify-center items-center absolute top-0 left-0 z-50 overflow-scroll ` + (className ? className : ''),
-		modalBlock: 'bg-white p-10 rounded-lg no-scrollbar h-full min-w-[550px]',
+		modalBlock: 'bg-white p-10 rounded-lg no-scrollbar h-full min-w-[550px] ',
 	}
 
 	return (
 		<section className={styles.container} onClick={handleClick}>
-			<div className={styles.modalBlock}>
+			<div className={styles.modalBlock + (modalClassName || '')}>
 				{children}
 			</div>
 		</section>

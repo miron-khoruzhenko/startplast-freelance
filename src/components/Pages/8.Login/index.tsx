@@ -40,7 +40,7 @@ const Login = () => {
 
 	return (
 		<section className={styles.container}>
-			<RegistrationPopup isOpen={isRegistrationOpen} setIsOpen={setIsRegistrationOpen} />
+			<RegistrationPopup  isOpen={isRegistrationOpen} setIsOpen={setIsRegistrationOpen} />
 			<div className="">
 				<Heading>Log in</Heading>
 				

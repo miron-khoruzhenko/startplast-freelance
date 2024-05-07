@@ -2,10 +2,16 @@ import { useEffect, useState } from "react"
 import Button from "../Button"
 import Heading, { Subheading } from "../Headings"
 import BlockInput from "../InputBlock"
+import { Link } from "react-router-dom"
+
+interface RegLogPropsType {
+	isOpen: boolean,
+	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>,
+	setModalType?: React.Dispatch<React.SetStateAction<string>>,
+}
 
 const RegistrationPopup = (
-	{isOpen, setIsOpen} :
-	{isOpen: boolean, setIsOpen: React.Dispatch<React.SetStateAction<boolean>>}
+	{isOpen, setIsOpen, setModalType} : RegLogPropsType
 ) => {
 	const styles = {
 		title: 'text-2xl mt-10 mb-6 text-main-indigo font-bold',
@@ -96,6 +102,10 @@ const RegistrationPopup = (
 				<BlockInput 
 					onInputChange={(e)=>setRegistrationData({...registrationData, tmp_data:e.target.value})} 
 					label="Company e-mail" placeholder="Placeholder" />
+			{
+				setModalType &&
+				<p className="text-center my-8 text-sm">Already have an account? <span className="underline cursor-pointer" onClick={()=>setModalType('login')}>Login here</span> or go to <Link to='/login' className="underline font-bold" onClick={()=>setIsOpen(false)}>Login Page</Link> for another methods </p>
+			}
 
 			<Footer 
 				isSecondCheckbox 
@@ -109,8 +119,8 @@ const RegistrationPopup = (
 }
 
 export const LoginPopup = (
-	{isOpen, setIsOpen} :
-	{isOpen: boolean, setIsOpen: React.Dispatch<React.SetStateAction<boolean>>}
+	{isOpen, setIsOpen, setModalType	} :
+	RegLogPropsType
 
 ) => {
 	
@@ -170,8 +180,13 @@ export const LoginPopup = (
 			/>
 			<BlockInput 
 				onInputChange={(e)=>setLoginData({...loginData, password:e.target.value}) } 
-				label="Password" placeholder="Placeholder" type="password" 
+				label="Password" placeholder="Enter password" type="password" 
 			/>
+			{
+				setModalType &&
+			<p className="text-center my-8 text-sm">New user? <span className="underline cursor-pointer" onClick={()=>setModalType('registration')}>Register here</span> <br /> or go to <Link to='/login' className="font-bold underline">Login Page</Link> to try another methods</p>
+		}
+
 			<Footer setItOpen={setIsOpen} isResLoading={resLoading} setIsSubmit={setIsSubmit} />
 		</Modal>
 	)
@@ -220,7 +235,7 @@ const Footer = (
 					<div className={styles.btnLoading + (isResLoading ? '' : 'hidden')}></div> Loading...
 				</Button>
 				:
-				<><Button onClick={setIsSubmit && (()=>setIsSubmit(true))}>Sign Up</Button>
+				<><Button onClick={setIsSubmit && (()=>setIsSubmit(true))}>Sign In</Button>
 				<Button isSecondary onClick={()=>setItOpen(false)} >Cancel</Button></>
 			}
 			</div>
@@ -241,7 +256,7 @@ export const Modal = (
 
 	const styles = {
 		container: `${isOpen? '' : 'hidden'} w-screen h-screen bg-main-gray/80 flex flex-col justify-center items-center absolute top-0 left-0 z-50 overflow-scroll ` + (className ? className : ''),
-		modalBlock: 'bg-white p-10 rounded-lg no-scrollbar h-full w-screen sm:min-w-[550px] ',
+		modalBlock: 'bg-white p-10 rounded-lg no-scrollbar h-full w-screen sm:max-w-[550px] ',
 	}
 
 	return (

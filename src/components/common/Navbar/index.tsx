@@ -51,6 +51,7 @@ const Navbar = () => {
 		icon: icon4,
 	})
 	const [isModalOpen, setIsModalOpen] = useState(false)
+	const [modalType, setModalType] = useState('login')
 	
 	const handleLangClick  = (lang : {name: string,icon: string}) => {		
 		setCurrentLang(lang)
@@ -64,13 +65,13 @@ const Navbar = () => {
 	}
 	const location = useLocation()
 
-	const show_login = true
 
 	return (
 		<nav className={styles.navbar}>
-			{ show_login ? 
-				<LoginPopup isOpen={isModalOpen} setIsOpen={setIsModalOpen} /> :
-				<RegistrationPopup isOpen={isModalOpen} setIsOpen={setIsModalOpen} /> 
+			{ modalType === 'login' ? 
+				<LoginPopup setModalType={setModalType} isOpen={isModalOpen} setIsOpen={setIsModalOpen} /> :
+				modalType === 'registration' &&
+				<RegistrationPopup setModalType={setModalType} isOpen={isModalOpen} setIsOpen={setIsModalOpen} /> 
 			}
 			<SearchModal isOpen={isSearchModalOpen} setIsOpen={setIsSearchModalOpen} />
 

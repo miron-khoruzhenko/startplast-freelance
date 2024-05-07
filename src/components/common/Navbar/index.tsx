@@ -90,12 +90,16 @@ const Navbar = () => {
 						<ul className={styles.navIcons}>
 							<li className={styles.navIcon} onClick={()=>setIsSearchModalOpen(true)}>
 								<img src={icon1} alt="" className={styles.navIconImg} /></li>
-							<li className={styles.navIcon} onClick={()=>setIsModalOpen(true)}>
+								
+							<li className={styles.navIcon + " USER "} onClick={()=>setIsModalOpen(true)}>
 								<img src={icon2} alt="" className={styles.navIconImg} />
-								</li>
-							<li className={styles.navIcon}>
-								<img src={icon3} alt="" className={styles.navIconImg} /></li>
-							<li className={styles.navIcon} onClick={()=>setIsOpen(!isOpen)}>
+							</li>
+
+							<li className={styles.navIcon + " CART"}>
+								<img src={icon3} alt="" className={styles.navIconImg} />
+							</li>
+
+							<li className={styles.navIcon + " LANG"} onClick={()=>setIsOpen(!isOpen)}>
 								<img src={currentLang.icon} alt="" className={styles.navIconImg + 'max-h-6 max-w-6 rounded-full'} />
 								<ul className={dropdownStyles.dropdown}>
 								{
@@ -109,14 +113,14 @@ const Navbar = () => {
 										</li>
 									)})
 								}
+								</ul>
+							</li>
 
-							</ul>
-								</li>
 						</ul>
 					</li>
 				</ul>
 
-				<SidebarScreen />
+				<SidebarScreen setIsModalOpen={setIsModalOpen} />
 			</div>
 		</nav>
 	)

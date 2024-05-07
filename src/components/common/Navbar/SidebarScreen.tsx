@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 
 import icon1 from '/src/assets/common/navbar-icons/search.svg'
 import icon2 from '/src/assets/common/navbar-icons/lang.svg'
+import icon3 from '/src/assets/common/navbar-icons/user.svg'
+import icon4 from '/src/assets/common/navbar-icons/shopping-cart.svg'
 import russian_icon from '/src/assets/common/navbar-icons/russian_flag.png'
 
 import navbar_links from "./navbar_links";
@@ -10,7 +12,13 @@ import Hamburger from "./Hamburger";
 
 import { Link, useLocation } from "react-router-dom";
 
-const SidebarScreen = () => {
+const SidebarScreen = (
+	{ 
+		setIsModalOpen
+	} : {
+		// isModalOpen: boolean,
+		setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+	}) => {
 
 	const [modeStyles, setModeStyles] = useState('')
 	const [isBurgerPressed, setIsBurgerPressed] = useState(false)
@@ -32,7 +40,7 @@ const SidebarScreen = () => {
 		hamburgerPsu : "after:block after:absolute after:w-14 after:h-14 after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 ",
 
 		navList: "flex flex-col gap-6 w-full", 
-		navListItem: "list-none text-lg ",
+		navListItem: "list-none text-lg cursor-pointer ",
 
 		arrow: "inline-block border-r-2 border-b-2 border-black w-2 h-2 rotate-45 mb-[2px] mx-2",
 
@@ -130,6 +138,15 @@ const SidebarScreen = () => {
 					}
 
 				</ul>
+			</li>
+			<li className={styles.navListItem + " flex font-bold justify-between" + " USER "} onClick={()=>setIsModalOpen(true)}>
+				<span className="">Profile</span>
+				<img src={icon3} alt="" className={''} />
+			</li>
+
+			<li className={styles.navListItem + " flex font-bold justify-between" + " CART"}>
+				<span className="">My Cart</span>
+				<img src={icon4} alt="" className={''} />
 			</li>
 
 			<li className={styles.navListItem}>

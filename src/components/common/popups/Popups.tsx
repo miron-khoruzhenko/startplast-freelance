@@ -241,7 +241,7 @@ export const Modal = (
 
 	const styles = {
 		container: `${isOpen? '' : 'hidden'} w-screen h-screen bg-main-gray/80 flex flex-col justify-center items-center absolute top-0 left-0 z-50 overflow-scroll ` + (className ? className : ''),
-		modalBlock: 'bg-white p-10 rounded-lg no-scrollbar h-full min-w-[550px] ',
+		modalBlock: 'bg-white p-10 rounded-lg no-scrollbar h-full w-screen sm:min-w-[550px] ',
 	}
 
 	return (

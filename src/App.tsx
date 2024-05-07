@@ -28,7 +28,8 @@ function App() {
         <Route path="/" element={
           <>
           <Navbar />
-          <div className="pt-[75px]" /><ScrollToTop />
+          <div className="pt-[75px]" />
+          <ScrollToTop />
           <Outlet />
           <Footer /></>
         } >

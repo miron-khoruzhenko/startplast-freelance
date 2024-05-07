@@ -36,6 +36,10 @@ const Login = () => {
 		e.preventDefault()
 		setPressedBtnStr((e.target as HTMLButtonElement).innerText)
 	}
+
+	useEffect(()=>{
+    window.scrollTo(0, 0);
+	}, [isRegistrationOpen])
 	
 
 	return (

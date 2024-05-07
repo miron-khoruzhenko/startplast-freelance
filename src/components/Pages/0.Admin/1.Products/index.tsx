@@ -1,6 +1,6 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Button, { EmptyButton } from "../../../common/Button"
-import InputBlock from "../../../common/InputBlock"
+import BlockInput from "../../../common/InputBlock"
 
 import trash_icon from '/src/assets/admin/trash.svg'
 
@@ -16,7 +16,7 @@ const ProductsAdmin = () => {
 			<ProductCol btnText="Update roduct" btnColor="yellow" heading="Heading" />
 			<div className="p-5 ">
 				<h2 className={styles.title}>Delete product:</h2>
-				<InputBlock placeholder="Code" />
+				<BlockInput placeholder="Code" />
 				<EmptyButton className="bg-[#DE3813] text-white w-full" > Delete product </EmptyButton>
 
 			</div>
@@ -37,6 +37,12 @@ const ProductCol = (
 
 	const [response, setResponse] = useState()
 	const [isLoading, setIsLoading] = useState(false)
+
+	useEffect(() => {
+		if (response) {
+			console.log(response)
+		}
+	}, [response])
 
 	/**
 	 * Handles the form submission when creating a new user.
@@ -99,10 +105,10 @@ const ProductCol = (
 			</select>
 
 			<div className={styles.flexContainer}>
-				<InputBlock onInputChange={(e)=>setProductData({...productData, name:e.target.value})} zeroMargin={true} placeholder="Name" />
-				<InputBlock onInputChange={(e)=>setProductData({...productData, code:e.target.value})} zeroMargin={true} placeholder="Code" />
-				<InputBlock onInputChange={(e)=>setProductData({...productData, quantityPerPackage:e.target.value})} zeroMargin={true} placeholder="Quantity per package" />
-				<InputBlock onInputChange={(e)=>setProductData({...productData, quantityPerPallet:e.target.value})} zeroMargin={true} placeholder="Quantity per pallet" />
+				<BlockInput onInputChange={(e)=>setProductData({...productData, name:e.target.value})} zeroMargin={true} placeholder="Name" />
+				<BlockInput onInputChange={(e)=>setProductData({...productData, code:e.target.value})} zeroMargin={true} placeholder="Code" />
+				<BlockInput onInputChange={(e)=>setProductData({...productData, quantityPerPackage:e.target.value})} zeroMargin={true} placeholder="Quantity per package" />
+				<BlockInput onInputChange={(e)=>setProductData({...productData, quantityPerPallet:e.target.value})} zeroMargin={true} placeholder="Quantity per pallet" />
 			</div>
 
 			<div className="flex gap-2 my-2">
@@ -128,7 +134,7 @@ const ProductCol = (
 const InputWithIcon = ({isDeleteBtn}:{isDeleteBtn:boolean})=> {
 	return(
 		<div className="flex justify-center gap-2 ">
-		<InputBlock  placeholder="Volume" zeroMargin />
+		<BlockInput  placeholder="Volume" zeroMargin />
 		{
 			isDeleteBtn ? <EmptyButton className="bg-[#DE3813] min-h-full mt-2" >
 				<img src={trash_icon} alt="" />

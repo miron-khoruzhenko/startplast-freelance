@@ -3,13 +3,25 @@ import { FilterBlockProps } from "../../../../types/Filter"
 import filter_db from "./filter_db"
 import InputBlock from "../../../common/InputBlock"
 import Button from "../../../common/Button"
-import { useEffect } from "react"
+import { useEffect, useRef, useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faXmark } from "@fortawesome/free-solid-svg-icons"
 
 const FilterList = (
-	{isOpen, setIsOpen} : 
-	{isOpen:boolean , setIsOpen:React.Dispatch<React.SetStateAction<boolean>>}) => {
+	{
+		isOpen, 
+		setIsOpen,
+		activeFilters,
+		setActiveFilters,
+		checkboxToUncheck,
+	} : 
+	{
+		isOpen:boolean , 
+		setIsOpen:React.Dispatch<React.SetStateAction<boolean>>,
+		activeFilters: string[],
+		setActiveFilters: React.Dispatch<React.SetStateAction<string[]>>,
+		checkboxToUncheck: string,
+	}) => {
 	const styles = {
 		// container: 'w-[280px] hidden sm:block '
 		container: `w-full h-screen sm:h-auto ${isOpen ? 'block' : 'hidden '} sm:block sm:w-[280px] absolute sm:static z-50 sm:z-0 top-0 left-0 bg-white block px-5 sm:px-0 `
@@ -30,6 +42,8 @@ const FilterList = (
 		<div className={styles.container}>
 			{
 				<FilterBlock 
+					activeFilters={activeFilters}
+					setActiveFilters={setActiveFilters}
 					title="Filters" 
 					isMainHeading={true}
 					filterList={filter_db[0].children} 
@@ -42,7 +56,13 @@ const FilterList = (
 			}
 			{
 				filter_db.map((item) => (
-					<FilterBlock title={item.title} filterList={item.children} key={item.index} />
+					<FilterBlock 
+						activeFilters={activeFilters}
+						setActiveFilters={setActiveFilters}
+						checkboxToUncheck={checkboxToUncheck}
+						title={item.title} 
+						filterList={item.children} 
+						key={item.index} />
 				))
 			}
 			<div className="flex sm:hidden justify-between pt-2 w-full">
@@ -64,6 +84,10 @@ const FilterBlock = (
 		isCheckbox=true,
 		filterList,
 		isMainHeading,
+		checkboxToUncheck,
+
+		activeFilters,
+		setActiveFilters,
 
 		onClickButton,
 		onClickCheckbox,
@@ -85,6 +109,25 @@ const FilterBlock = (
 
 		filterList: "flex flex-col gap-4 ",
 		listItem: 'cursor-pointer '
+	}
+
+
+
+	const handleCheckboxClick = (e:React.ChangeEvent<HTMLInputElement>) => {
+		// Если checbox активен
+		const data_string = (e.currentTarget.dataset.tag as string).toLowerCase()
+		
+
+		if(e.currentTarget.dataset.checked === 'false'){
+			// console.log( e.currentTarget.dataset.tag)
+			setActiveFilters([...activeFilters, data_string])
+		} else {
+			const new_activeFilters = activeFilters.filter((item) => {
+				return item !== data_string
+			})
+
+			setActiveFilters(new_activeFilters)
+		}
 	}
 
 	return(
@@ -115,11 +158,17 @@ const FilterBlock = (
 						<li key={item.index} className={styles.listItem}>
 							<InputBlock 
 								
-
+								dataTag={item.name}
 								label={item.name} 
 								type="checkbox" 
 								placeholder="Placeholder" 
-								onClick={onClickCheckbox} 
+								// onClick={onClickCheckbox} 
+								onClick={() => {
+									onClickCheckbox && onClickCheckbox()
+								}} 
+								onInputChange={handleCheckboxClick}
+								checkboxToUncheck={checkboxToUncheck}
+								// setIsCheckboxActive={setIsCheckboxActive}
 								checkBoxColor={item.checkboxColor ||  'white'}
 							/>
 						</li>))

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import Button from "../Button"
 import Heading, { Subheading } from "../Headings"
-import InputBlock from "../InputBlock"
+import BlockInput from "../InputBlock"
 
 const RegistrationPopup = (
 	{isOpen, setIsOpen} :
@@ -76,24 +76,24 @@ const RegistrationPopup = (
 				/>
 
 			<h3 className={styles.title}>New company</h3>
-				<InputBlock 
+				<BlockInput 
 					onInputChange={(e)=>setRegistrationData({...registrationData, company_info:e.target.value})} 
 					label="Company info" placeholder="Placeholder" />
-				<InputBlock 
+				<BlockInput 
 					onInputChange={(e)=>setRegistrationData({...registrationData, registration_code:e.target.value})} 
 					label="Registration code" placeholder="Placeholder" />
-				<InputBlock 
+				<BlockInput 
 					onInputChange={(e)=>setRegistrationData({...registrationData, company_email:e.target.value})} 
 					label="Company e-mail" placeholder="Placeholder" />
 			
 			<h3 className={styles.title}>New company</h3>
-				<InputBlock 
+				<BlockInput 
 					onInputChange={(e)=>setRegistrationData({...registrationData, email:e.target.value })} 
 					label="E-mail" placeholder="Placeholder" />
-				<InputBlock 
+				<BlockInput 
 					onInputChange={(e)=>setRegistrationData({...registrationData, password:e.target.value})} 
 					label="Password" type='password' placeholder="Placeholder" />
-				<InputBlock 
+				<BlockInput 
 					onInputChange={(e)=>setRegistrationData({...registrationData, tmp_data:e.target.value})} 
 					label="Company e-mail" placeholder="Placeholder" />
 
@@ -163,12 +163,12 @@ export const LoginPopup = (
 		<Modal isOpen={isOpen} setIsOpen={setIsOpen}>
 			<Header title="Login" errorMsg={isResError ? 'Error: ' + response?.message : '' } />
 			{/* <InputBlock onInputChange={} label="Your name" placeholder="Placeholder" /> */}
-			<InputBlock label="Your name" placeholder="Placeholder" />
-			<InputBlock 
+			<BlockInput label="Your name" placeholder="Placeholder" />
+			<BlockInput 
 				onInputChange={(e)=> setLoginData({...loginData, email:e.target.value}) } 
 				label="E-mail" placeholder="Placeholder" 
 			/>
-			<InputBlock 
+			<BlockInput 
 				onInputChange={(e)=>setLoginData({...loginData, password:e.target.value}) } 
 				label="Password" placeholder="Placeholder" type="password" 
 			/>
@@ -211,8 +211,8 @@ const Footer = (
 	return (
 		<>
 			<div className={styles.flexContainer}>
-				<InputBlock type="checkbox" label="I accept the Terms" placeholder="test" />
-				{isSecondCheckbox && <InputBlock type="checkbox" label="Join newsletter" placeholder="test" />}
+				<BlockInput type="checkbox" label="I accept the Terms" placeholder="test" />
+				{isSecondCheckbox && <BlockInput type="checkbox" label="Join newsletter" placeholder="test" />}
 			</div>
 			<div className={styles.flexContainer}>{
 				isResLoading ? 

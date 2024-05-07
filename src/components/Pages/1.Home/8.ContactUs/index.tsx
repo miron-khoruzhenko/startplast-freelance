@@ -1,7 +1,7 @@
 import Button from "../../../common/Button"
 import Container from "../../../common/Container"
 import Heading from "../../../common/Headings"
-import InputBlock from "../../../common/InputBlock"
+import BlockInput from "../../../common/InputBlock"
 
 import contact_data from "./contact_data"
 
@@ -19,10 +19,10 @@ const ContactUs = () => {
 			<Heading>Contact Us</Heading>
 			<div className={styles.mainGrid}>
 				<div className={styles.inputContainer}>
-					<InputBlock label="Name" type="text" placeholder="Placeholder" />
-					<InputBlock label="Email" type="email" placeholder="Placeholder" />
-					<InputBlock label="Message" placeholder="Type your message..." textarea={true} />
-					<InputBlock type="checkbox" placeholder="Placeholder" />
+					<BlockInput label="Name" type="text" placeholder="Placeholder" />
+					<BlockInput label="Email" type="email" placeholder="Placeholder" />
+					<BlockInput label="Message" placeholder="Type your message..." textarea={true} />
+					<BlockInput type="checkbox" placeholder="Placeholder" />
 					<Button className="w-full text-center sm:w-min mt-10 ">Send</Button>
 
 				</div>

@@ -68,11 +68,11 @@ const Navbar = () => {
 
 	return (
 		<nav className={styles.navbar}>
-			{/* { show_login ? 
+			{ show_login ? 
 				<LoginPopup isOpen={isModalOpen} setIsOpen={setIsModalOpen} /> :
 				<RegistrationPopup isOpen={isModalOpen} setIsOpen={setIsModalOpen} /> 
 			}
-			<SearchModal isOpen={isSearchModalOpen} setIsOpen={setIsSearchModalOpen} /> */}
+			<SearchModal isOpen={isSearchModalOpen} setIsOpen={setIsSearchModalOpen} />
 
 			<div className={styles.container}>
 

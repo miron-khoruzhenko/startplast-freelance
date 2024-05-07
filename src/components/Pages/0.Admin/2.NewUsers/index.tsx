@@ -1,6 +1,6 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Button, { EmptyButton } from "../../../common/Button"
-import InputBlock from "../../../common/InputBlock"
+import BlockInput from "../../../common/InputBlock"
 
 const styles = {
 	container: 'pr-[300px] ',
@@ -80,6 +80,13 @@ export const RightPanel = ({isEditPanel} : {isEditPanel:boolean}) => {
 	const [response, setResponse] = useState()
 	const [isLoading, setIsLoading] = useState(false)
 
+	useEffect(() => {
+		if (response) {
+			console.log(response)
+			console.log(isLoading)
+		}
+	}, [response])
+
 	/**
 	 * Handles the form submission when creating a new user.
 	 * 
@@ -113,11 +120,11 @@ export const RightPanel = ({isEditPanel} : {isEditPanel:boolean}) => {
 	return (
 		<div className="bg-neutral-300  py-24  w-[300px] min-h-screen text-white px-7 absolute right-0 top-0 max-h-full overflow-y-scroll ">
 			<h2 className={styles.title + 'text-black '}>Selected user:</h2>
-			<InputBlock onInputChange={(e)=>setProductData({...productData, full_name:e.target.value})} className="placeholder:text-black" zeroMargin={true} placeholder="Full Name" />
-			<InputBlock onInputChange={(e)=>setProductData({...productData, company_name:e.target.value})} className="placeholder:text-black" zeroMargin={true} placeholder="Company Name" />
-			<InputBlock onInputChange={(e)=>setProductData({...productData, email:e.target.value})} className="placeholder:text-black" zeroMargin={true} placeholder="Email Name" />
-			<InputBlock onInputChange={(e)=>setProductData({...productData, discount:e.target.value})} zeroMargin={true} placeholder="Discount" />
-			<InputBlock onInputChange={(e)=>setProductData({...productData, password:e.target.value})} zeroMargin={true} placeholder="Password" />
+			<BlockInput onInputChange={(e)=>setProductData({...productData, full_name:e.target.value})} className="placeholder:text-black" zeroMargin={true} placeholder="Full Name" />
+			<BlockInput onInputChange={(e)=>setProductData({...productData, company_name:e.target.value})} className="placeholder:text-black" zeroMargin={true} placeholder="Company Name" />
+			<BlockInput onInputChange={(e)=>setProductData({...productData, email:e.target.value})} className="placeholder:text-black" zeroMargin={true} placeholder="Email Name" />
+			<BlockInput onInputChange={(e)=>setProductData({...productData, discount:e.target.value})} zeroMargin={true} placeholder="Discount" />
+			<BlockInput onInputChange={(e)=>setProductData({...productData, password:e.target.value})} zeroMargin={true} placeholder="Password" />
 			<Button className="mt-2 w-full">Generate Password</Button>
 			<Button className="mt-2 w-full">Generate Password</Button>
 

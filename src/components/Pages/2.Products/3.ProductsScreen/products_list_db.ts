@@ -11,102 +11,119 @@ import img9  from '/src/assets/products/productGridHQ/img9.jpg'
 import img10 from '/src/assets/products/productGridHQ/img10.jpg'
 import img11 from '/src/assets/products/productGridHQ/img11.jpg'
 
+const img_arr = [img0, img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11]
+
+let index = 0;
+
 const product_list_db = [
 	{
-		index: 0,
 		title: 'Product name',
 		descr: '500 pcs in 1 pack',
 		price: '€55',
 		href: '/products/product1',
-		img: img0
+		img: img_arr[index],
+		tags: ['bottles', 'water and drinks', 'basic', '0,5L', '38mm', 'white'],
+		index: index++,
 	},
 	{
-		index: 1,
 		title: 'Product name',
 		descr: '500 pcs in 1 pack',
 		price: '€55',
 		href: '/products/product2',
-		img: img1
+		img: img_arr[index],
+		tags: ['bottles', 'water and drinks', 'basic', '0,2L', '38mm', 'white'],
+		index: index++,
 	},
 	{
-		index: 2,
-		title: 'Product name',
+		title: 'Test',
 		descr: '500 pcs in 1 pack',
 		price: '€55',
 		href: '/products/product3',
-		img: img2
+		img: img_arr[index],
+		tags: ['bottles', 'water and drinks', 'basic', '0,5L', '28mm', 'white'],
+		index: index++,
 	},
 	{
-		index: 3,
 		title: 'Product name',
 		descr: '500 pcs in 1 pack',
 		price: '€55',
 		href: '/products/product4',
-		img: img3
+		img: img_arr[index],
+		tags: ['bottles', 'water and drinks', 'basic', '0,5L', '38mm', 'green'],
+
+		index: index++,
 	},
 	{
-		index: 4,
 		title: 'Product name',
 		descr: '500 pcs in 1 pack',
 		price: '€55',
 		href: '/products/product5',
-		img: img4
+		img: img_arr[index],
+		tags: [],
+		index: index++,
 	},
 	{
-		index: 5,
 		title: 'Product name',
 		descr: '500 pcs in 1 pack',
 		price: '€55',
 		href: '/products/product6',
-		img: img5
+		img: img_arr[index],
+		tags: ['bottles', 'water and drinks', 'basic', '5L', '38mm', 'blue'],
+		index: index++,
 	},
 	{
-		index: 6,
 		title: 'Product name',
 		descr: '500 pcs in 1 pack',
 		price: '€55',
 		href: '/products/product7',
-		img: img6
+		img: img_arr[index],
+		tags: [],
+		index: index++,
 	},
 	{
-		index: 7,
 		title: 'Product name',
 		descr: '500 pcs in 1 pack',
 		price: '€55',
 		href: '/products/product8',
-		img: img7
+		img: img_arr[index],
+		tags: [],
+		index: index++,
 	},
 	{
-		index: 8,
 		title: 'Product name',
 		descr: '500 pcs in 1 pack',
 		price: '€55',
 		href: '/products/product9',
-		img: img8
+		img: img_arr[index],
+		tags: [],
+		index: index++,
 	},
 	{
-		index: 9,
 		title: 'Product name',
 		descr: '500 pcs in 1 pack',
 		price: '€55',
 		href: '/products/product10',
-		img: img9
+		img: img_arr[index],
+		tags: [],
+		index: index++,
 	},
 	{
-		index: 10,
 		title: 'Product name',
 		descr: '500 pcs in 1 pack',
 		price: '€55',
 		href: '/products/product11',	
-		img: img10
+		img: img_arr[index],
+		tags: [],
+		index: index++,
 	},
 	{
-		index: 11,
 		title: 'Product name',
 		descr: '500 pcs in 1 pack',
 		price: '€55',
 		href: '/products/product12',
-		img: img11
+		img: img_arr[index],
+		tags: [],
+		index: index++,
 	},
 ]
 

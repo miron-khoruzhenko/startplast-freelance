@@ -1,7 +1,9 @@
+import { useEffect, useState } from "react"
 import { InputBlockProps } from "../../../types/InputBlockProps"
 
 const InputBlock = (
-	{label, type, placeholder, textarea, checkBoxColor, zeroMargin, className, onClick, onInputChange} : InputBlockProps) => {
+	{label, type, placeholder, textarea, checkBoxColor, zeroMargin, className, dataTag, checkboxToUncheck, onClick, onInputChange } : InputBlockProps) => 
+		{
 	const styles = {
 		container: `${zeroMargin ? ' ' : 'mb-6 '} `,
 		label: 'block mb-2',
@@ -10,19 +12,46 @@ const InputBlock = (
 		textarea: 'h-[180px] ',
 	}
 
+	useEffect(() => {
+		if (checkboxToUncheck?.toLowerCase() === label?.toLowerCase()) {
+			const checkbox = document.querySelector(`input[data-tag="${dataTag}"]`) as HTMLInputElement
+			checkbox.checked = false
+			setIsCheckboxActive(false)
+
+		}
+	}, [checkboxToUncheck, label, dataTag])
+
+	const [isCheckboxActive, setIsCheckboxActive] = useState(false)
+
+	const handleCheckboxClick = (e:React.ChangeEvent<HTMLInputElement>) => {
+		// Если checbox активен 
+		if(e.target.checked){
+			setIsCheckboxActive(true)
+		} else {
+			setIsCheckboxActive(false)
+		}
+	}
+
 	if (type === 'checkbox') {
 		return (
-			<div className={styles.container + "flex items-center"}>
+			<div 
+			onClick={onClick}
+			className={styles.container + "flex items-center"}>
 				<input 
+					data-tag={dataTag}
+					data-checked={isCheckboxActive}
 					type="checkbox" 
 					id={label} 
 					className={styles.checkbox} 
 					style={{backgroundColor: checkBoxColor || 'white'}}
-					onChange={onInputChange}
+					onChange={(e)=>{
+						onInputChange && onInputChange(e)
+						handleCheckboxClick(e)
+					}}
 				/>
 				<label 
 					htmlFor={label} 
-					className="text-sm ml-3"
+					className="text-sm pl-3"
 				>
 						{label || <>I accept <a href="" className="underline">the Terms</a></>}</label>
 			</div>
@@ -34,7 +63,7 @@ const InputBlock = (
 			<label className={styles.label}>{label}</label>
 			{
 				textarea ? 
-				<textarea onClick={onClick} placeholder={placeholder} className={styles.input + styles.textarea}></textarea>
+				<textarea onClick={(onClick && undefined)} placeholder={placeholder} className={styles.input + styles.textarea}></textarea>
 				:
 				<input 
 					type={type || 'text'} 

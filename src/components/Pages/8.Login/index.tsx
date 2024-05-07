@@ -1,9 +1,9 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Button, { EmptyButton } from "../../common/Button"
 import Heading from "../../common/Headings"
 
 import img from '/src/assets/login/smart_id_logo.png'
-import InputBlock from "../../common/InputBlock"
+import BlockInput from "../../common/InputBlock"
 import RegistrationPopup from "../../common/popups/Popups"
 
 const Login = () => {
@@ -69,6 +69,12 @@ const SmartIDLogin = () => {
 	const [fetchData, setFetchData] = useState()
 	const [isLoading, setIsLoading] = useState(false)
 
+	useEffect(() => {
+		if (fetchData) {
+			console.log(fetchData)
+		}
+	}, [fetchData])
+
 	/**
 	 * Handles the form submission when creating a new user.
 	 * 
@@ -104,7 +110,7 @@ const SmartIDLogin = () => {
 	return (
 		<div className="">
 			<img src={img} alt="" className={'mb-6'} />
-			<InputBlock label="Isikukood*" type="text" placeholder="" />
+			<BlockInput onInputChange={(e)=>setLoginData({...loginData, isikukood: e.target.value})} label="Isikukood*" type="text" placeholder="" />
 			{isLoading ? 
 				<Button className="flex justify-center items-center  gap-4 w-full text-center">
 					<div className={styles.btnLoading + (isLoading ? '' : 'hidden')}></div> <div>Loading...</div>
@@ -119,8 +125,8 @@ const SmartIDLogin = () => {
 const IDCardLogin = () => {
 	return (
 		<div className="">
-			<InputBlock label="ID Number" type="text" placeholder="" />
-			<InputBlock label="Password" type="text" placeholder="" />
+			<BlockInput label="ID Number" type="text" placeholder="" />
+			<BlockInput label="Password" type="text" placeholder="" />
 			<Button className="w-full">Log in</Button>
 		</div>
 	)
@@ -129,7 +135,7 @@ const IDCardLogin = () => {
 const MobileIDLogin = () => {
 	return (
 		<div className="">
-			<InputBlock label="Mobile ID Number" type="text" placeholder="" />
+			<BlockInput label="Mobile ID Number" type="text" placeholder="" />
 			{/* <InputBlock label="Password" type="text" placeholder="" /> */}
 			<Button className="w-full">Log in</Button>
 		</div>
@@ -139,8 +145,8 @@ const MobileIDLogin = () => {
 const EmailLogin = () => {
 	return (
 		<div className="">
-			<InputBlock label="E-mail" type="text" placeholder="" />
-			<InputBlock label="Password" type="text" placeholder="" />
+			<BlockInput label="E-mail" type="text" placeholder="" />
+			<BlockInput label="Password" type="text" placeholder="" />
 			<Button className="w-full">Log in</Button>
 		</div>
 	)

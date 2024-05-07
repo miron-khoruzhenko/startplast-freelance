@@ -5,16 +5,16 @@ const footer_links = [
 		href : '/bottles',
 		sublinks : [
 			{
-				title : 'Plastic Bottles',
-				href : '/plastic-bottles'
+				title : 'For water and drinks',
+				href : '/for-water-and-drinks'
 			},
 			{
-				title : 'Glass Bottles',
-				href : '/glass-bottles'
+				title : 'For chemicals',
+				href : '/for-chemicals'
 			},
 			{
-				title : 'Metal Bottles',
-				href : '/metal-bottles'
+				title : 'For alcohol',
+				href : '/for-alcohol'
 			},
 		]
 	},
@@ -24,16 +24,20 @@ const footer_links = [
 		href : '/caps',
 		sublinks : [
 			{
-				title : 'Plastic Caps',
-				href : '/plastic-caps'
+				title : 'Basic',
+				href : '/basic'
 			},
 			{
-				title : 'Metal Caps',
-				href : '/metal-caps'
+				title : 'Anti-child protection',
+				href : '/anti-child-protection'
 			},
 			{
-				title : 'Corks',
-				href : '/corks'
+				title : 'Sport',
+				href : '/sport'
+			},
+			{
+				title : 'For jars',
+				href : '/for-jars'
 			},
 		]
 	},
@@ -43,16 +47,16 @@ const footer_links = [
 		href : '/handles',
 		sublinks : [
 			{
-				title : 'Plastic Handles',
-				href : '/plastic-handles'
+				title : '48 neck diameter',
+				href : '/48-neck-diameter'
 			},
 			{
-				title : 'Metal Handles',
-				href : '/metal-handles'
+				title : '38 neck diameter',
+				href : '/38-neck-diameter'
 			},
 			{
-				title : 'Wooden Handles',
-				href : '/wooden-handles'
+				title : '28 neck diameter',
+				href : '/28-neck-diameter'
 			},
 		]
 	},
@@ -62,16 +66,12 @@ const footer_links = [
 		href : '/billets',
 		sublinks : [
 			{
-				title : 'Plastic Billets',
-				href : '/plastic-billets'
+				title : 'Small',
+				href : '/small-billets'
 			},
 			{
-				title : 'Metal Billets',
-				href : '/metal-billets'
-			},
-			{
-				title : 'Wooden Billets',
-				href : '/wooden-billets'
+				title : 'Big',
+				href : '/Big-billets'
 			},
 		]
 	}

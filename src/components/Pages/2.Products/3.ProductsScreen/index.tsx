@@ -7,8 +7,37 @@ import ProductBlockProps from "../../../../types/ProductBlock"
 import product_list_db from "./products_list_db"
 import { Link } from "react-router-dom"
 
+// const isThereSame = (arr1 : string[], arr2 : string[]) => {
+// 	arr1.forEach((el1) => {
+// 		arr2.forEach((el2) => {
+// 			if (el1 === el2) {
+// 				return true
+// 			}
+// 		})
+// 	})
+// 	return false
+// }
 
-const ProductsScreen = () => {
+const checkIfNotIn = (arr1 : string[], arr2 : string[]) => {
+	let isNotIn = true
+
+	arr1.forEach((el1) => {
+		if (arr2.includes(el1)){
+			isNotIn = false
+		}else{
+			isNotIn = true
+			return
+		}
+	})
+	return isNotIn
+}
+
+const ProductsScreen = (props : 
+	{
+		activeFilters : string[], 
+		setActiveFilters: React.Dispatch<React.SetStateAction<string[]>>,
+		setCheckboxToUncheck: React.Dispatch<React.SetStateAction<string>>
+	}) => {
 	const styles = {
 		container: 'w-full ',
 		grid: 'grid grid-cols-2 sm:grid-cols-4 gap-5 gap-y-10 mt-6 '
@@ -16,11 +45,20 @@ const ProductsScreen = () => {
 
 	return (
 		<section className={styles.container}>
-			<NavPanel />
+			<NavPanel 
+				setActiveFilters={props.setActiveFilters}
+				setCheckboxToUncheck={props.setCheckboxToUncheck} 
+				activeFilters={props.activeFilters} />
 
 			<div className={styles.grid}>
 				{
 					product_list_db.map((product) => {
+						// if tagArr cotains "all" ...
+						if (
+							!checkIfNotIn(props.activeFilters, product.tags) 
+							|| props.activeFilters.length === 0 
+							|| props.activeFilters.includes('all')
+						)
 						return <ProductBlock key={product.index} {...product} />
 					})
 				}
@@ -56,7 +94,11 @@ const ProductBlock = (props : ProductBlockProps) => {
 	)
 }
 
-const NavPanel = () => {
+const NavPanel = (props : {
+	activeFilters : string[],
+	setActiveFilters: React.Dispatch<React.SetStateAction<string[]>>,
+	setCheckboxToUncheck: React.Dispatch<React.SetStateAction<string>>
+}) => {
 	const [isOpen, setIsOpen] = useState(false) 
 
 	const styles = {
@@ -72,14 +114,37 @@ const NavPanel = () => {
 		dropdownItem: 'cursor-pointer hover:bg-main-gray py-2 px-4',
 	}
 
+	const handleClick = (filter : string)=>{
+		props.setCheckboxToUncheck(filter)
+
+		setTimeout(() => {
+			props.setCheckboxToUncheck('')
+		}, 100)
+
+		const newActiveFilters = props.activeFilters.filter((item) => {
+				console.log(`Item ${item} !== filter ${filter}`)
+				return item !== filter
+			})
+		console.log('signal: ', newActiveFilters)
+		props.setActiveFilters(newActiveFilters)
+		console.log('Cross main clicked')
+	}
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.activeFilters}>
 				
-				<div className={styles.filterBlock}>
-					<p>All</p>
-					<FontAwesomeIcon icon={faXmark} className="mt-1" />
+				{
+				props.activeFilters.map((filter, index) => {
+					return <div key={index} className={styles.filterBlock}>
+					<p key={filter}>{filter.charAt(0).toUpperCase() + filter.slice(1)}</p>
+							<FontAwesomeIcon 
+								icon={faXmark} className="mt-1" 
+								onClick={() => handleClick(filter)}
+							/>
 				</div>
+						})
+					}
 				
 			</div>
 

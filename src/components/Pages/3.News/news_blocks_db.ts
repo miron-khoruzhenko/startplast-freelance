@@ -13,6 +13,7 @@ const news_blocks_db = [
 		category: "Category",
 		descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.",
 		href: '/news/news-page',
+		category_idx: [2],
 		img: img0,
 	},
 	{
@@ -21,6 +22,7 @@ const news_blocks_db = [
 		category: "Category",
 		descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.",
 		href: '/news/news-page',
+		category_idx: [2, 3],
 		img: img1,
 	},
 	{
@@ -29,6 +31,7 @@ const news_blocks_db = [
 		category: "Category",
 		descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.",
 		href: '/news/news-page',
+		category_idx: [1, 2, 3],
 		img: img2,
 	},
 	{
@@ -37,6 +40,7 @@ const news_blocks_db = [
 		category: "Category",
 		descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.",
 		href: '/news/news-page',
+		category_idx: [1, 2, 3, 4],
 		img: img3,
 	},
 	{
@@ -45,6 +49,7 @@ const news_blocks_db = [
 		category: "Category",
 		descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.",
 		href: '/news/news-page',
+		category_idx: [4],
 		img: img4,
 	},
 	{
@@ -53,6 +58,7 @@ const news_blocks_db = [
 		category: "Category",
 		descr: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.",
 		href: '/news/news-page',
+		category_idx: [3],
 		img: img5,
 	},
 ]

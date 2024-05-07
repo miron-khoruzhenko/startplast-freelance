@@ -17,6 +17,7 @@ const NewsGrid = () => {
 			<Navigation className="mb-16 " activeCategory={activeCategory} setActiveCategory={setActiveCategory} />
 			<div className={styles.grid}>
 				{news_blocks_db.map(block => (
+					(block.category_idx.includes(activeCategory) || activeCategory === 0) &&
 					<NewsBlock key={block.index} {...block} />
 				))}
 			</div>

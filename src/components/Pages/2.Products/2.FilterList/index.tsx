@@ -3,7 +3,7 @@ import { FilterBlockProps } from "../../../../types/Filter"
 import filter_db from "./filter_db"
 import InputBlock from "../../../common/InputBlock"
 import Button from "../../../common/Button"
-import { useEffect, useRef, useState } from "react"
+import { useEffect } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faXmark } from "@fortawesome/free-solid-svg-icons"
 

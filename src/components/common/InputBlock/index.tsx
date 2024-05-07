@@ -13,13 +13,16 @@ const InputBlock = (
 	}
 
 	useEffect(() => {
+		if (type !== 'checkbox' || !checkboxToUncheck)
+			return
+
 		if (checkboxToUncheck?.toLowerCase() === label?.toLowerCase()) {
 			const checkbox = document.querySelector(`input[data-tag="${dataTag}"]`) as HTMLInputElement
 			checkbox.checked = false
 			setIsCheckboxActive(false)
 
 		}
-	}, [checkboxToUncheck, label, dataTag])
+	}, [checkboxToUncheck, label, dataTag, type])
 
 	const [isCheckboxActive, setIsCheckboxActive] = useState(false)
 

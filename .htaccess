@@ -1,13 +1,5 @@
-RewriteEngine On
-
-# Перенаправление всех поддоменов на основной домен
-# Например, blog.example.com → example.com
-RewriteCond %{HTTP_HOST} !^www\. [NC]
-RewriteCond %{HTTP_HOST} ^([^.]+)\.example\.com$ [NC]
-RewriteRule ^(.*)$ https://example.com/ [L,R=301]
-
-# Если нужен редирект на поддомен-специфическую страницу
-# Например, todo.example.com → example.com/todo
-# Раскомментируй и отредактируй:
-# RewriteCond %{HTTP_HOST} ^todo\.example\.com$ [NC]
-# RewriteRule ^(.*)$ https://example.com/todo [L,R=301]
+RewriteEngine on
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule (.+) index.html?path=$1 [L,QSA]

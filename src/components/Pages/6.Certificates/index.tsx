@@ -18,6 +18,7 @@ import solo_img0 from '/src/assets/certificates/solo_img0.png'
 import solo_img1 from '/src/assets/certificates/solo_img1.png'
 
 import certificates from "./certificates_db"
+import { useEffect } from "react"
 
 const Certificates = () => {
 	const styles = {
@@ -25,6 +26,10 @@ const Certificates = () => {
 		letterImg: "max-w-[330px] mx-auto ",
 		certificatesLink: " underline"
 	}
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, [])
 
 
 

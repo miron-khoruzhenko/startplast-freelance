@@ -1,9 +1,14 @@
+import { useEffect } from "react"
 import Container from "../../common/Container"
 import { MainHeading } from "../../common/Headings"
 import Products from "../1.Home/2.Products"
 import NewsGrid from "./NewsGrid"
 
 const News = () => {
+	useEffect(() => {
+			window.scrollTo(0, 0);
+		}, [])
+
 	return (
 		<div>
 			<Hero />

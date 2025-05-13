@@ -7,8 +7,13 @@ import { FormatedParagraphs, ImgBlockWithCaption } from '../../../common/BlogCom
 
 import socials_db from './socials_db'
 import News from '../../1.Home/7.News'
+import { useEffect } from 'react'
 
 const NewsPage = () => {
+	useEffect(() => {
+			window.scrollTo(0, 0);
+		}, [])
+
 	return (
 		<>
 			<Hero />

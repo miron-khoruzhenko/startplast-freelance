@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Hero from "./1.Hero"
 import FilterList from "./2.FilterList"
 import ProductsScreen from "./3.ProductsScreen"
@@ -10,6 +10,9 @@ const Products = () => {
 	const [filter, setFilter] = useState<string[]>([])
 	const [checkboxToUncheck, setCheckboxToUncheck] = useState<string>('')
 
+	useEffect(() => {
+			window.scrollTo(0, 0);
+		}, [])
 	
 	const styles = {
 		container: 'container mx-auto px-5 py-10 flex flex-col sm:flex-row gap-16 overflow-y-visible '

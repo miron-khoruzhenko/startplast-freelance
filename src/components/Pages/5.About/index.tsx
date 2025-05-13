@@ -12,9 +12,14 @@ import img3 from '/src/assets/about_us/img3.jpg'
 
 import letter_img0 from '/src/assets/certificates/letter0.png'
 import letter_img2 from '/src/assets/certificates/letter2.png'
+import { useEffect } from "react"
 
 
 const About = () => {
+	useEffect(() => {
+			window.scrollTo(0, 0);
+		}, [])
+
 	return (
 		<>
 		<BlogContainer>

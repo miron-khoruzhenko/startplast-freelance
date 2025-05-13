@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import Hero from "./1.Hero"
 import Products from "./2.Products"
 import CustomSection from "./3.Custom"
@@ -9,6 +10,10 @@ import ContactUs from "./8.ContactUs"
 
 
 const Home = () => {
+	useEffect(() => {
+			window.scrollTo(0, 0);
+		}, [])
+
 	return (
 		<div>
 			<Hero />

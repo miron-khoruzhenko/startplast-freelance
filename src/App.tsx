@@ -22,7 +22,7 @@ import ScrollToTop from "./components/utils/ScrollToTop";
 
 function App() {
   return (
-    <BrowserRouter basename="/miron.github.io">
+    <BrowserRouter basename="">
       <Routes>
         {/* Основной маршрут для пользовательской части приложения */}
         <Route path="/" element={

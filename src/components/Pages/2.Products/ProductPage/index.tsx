@@ -2,6 +2,7 @@ import Container from "../../../common/Container"
 import { useLocation } from "react-router-dom"
 import Heading from "../../../common/Headings"
 import Button from "../../../common/Button"
+import { useEffect } from "react"
 
 const ProductsPage = () => {
 	const styles = {
@@ -12,6 +13,10 @@ const ProductsPage = () => {
 		inputNumber : "rounded border border-black p-3 w-[64px] outline-none remove-arrow mt-2",
 	}
 	const {state} = useLocation()
+
+	useEffect(() => {
+			window.scrollTo(0, 0);
+		}, [])
 	
 
 	return (
